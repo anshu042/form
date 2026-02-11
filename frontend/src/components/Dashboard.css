@@ -1,0 +1,241 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll for off-canvas sidebar */
+    position: relative;
+}
+
+/* Toggle button fixed to top-left */
+
+
+/* Move toggle button when sidebar is open to remain visible or stay? 
+   User might want it inside sidebar or outside. 
+   Let's keep it fixed at left. If sidebar covers it, we need to move it or have another one.
+   Actually, if sidebar is z-index 1000, and this is 1001, it stays on top.
+   But if sidebar open, it might look weird overlapping text.
+   Let's slide it with the sidebar? 
+   Or just put it top-right of sidebar? 
+*/
+
+.sidebar.open~.main-content .toggle-btn {
+    /* If we want to move it */
+}
+
+/* Sidebar Styling */
+.sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #e0e0e0;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+    transform: translateX(0);
+}
+
+.sidebar.closed {
+    transform: translateX(-100%);
+    width: 250px;
+    /* Keep width constant for slide effect */
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-left: 60px;
+    /* Space for the toggle button */
+    padding-top: 20px;
+    /* Align with fixed top button */
+}
+
+.logo {
+    font-size: 1.5rem;
+    /* Increased to match visual weight */
+    font-weight: 700;
+    color: #4a90e2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 5px 0;
+    /* Add vertical padding */
+}
+
+.logo:hover {
+    color: #1976d2;
+    transform: scale(1.05);
+}
+
+/* Toggle button fixed */
+.toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #555;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: left 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background-color: #f0f0f0;
+}
+
+/* Navigation Menu */
+.sidebar-menu {
+    flex-grow: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin-bottom: 10px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #555;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: 500;
+}
+
+.menu-link:hover,
+.menu-link.active {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.menu-icon {
+    margin-right: 12px;
+    font-size: 1.2rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+.menu-text {
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.sidebar.closed .menu-text,
+.sidebar.closed .logo {
+    opacity: 0;
+    width: 0;
+    display: none;
+}
+
+/* Logout Button */
+.logout-container {
+    margin-top: auto;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 20px;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: transparent;
+    border: 1px solid #ff5252;
+    border-radius: 8px;
+    color: #ff5252;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+.logout-btn:hover {
+    background-color: #ffebee;
+}
+
+.sidebar.closed .logout-btn {
+    padding: 12px 0;
+}
+
+.sidebar.closed .logout-text {
+    display: none;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+    width: 100%;
+    margin-left: 0;
+    /* No margin needed as sidebar is overlay */
+}
+
+.header {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    /* Reduced from 60px as we don't have fixed btn anymore */
+    transition: transform 0.3s ease;
+}
+
+.dashboard-header-open {
+    transform: translateX(250px);
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: #2c3e50;
+}
+
+/* Dashboard Toggle Button Styles */
+.dashboard-toggle-btn {
+    background-color: #e3f2fd;
+    /* Highlight color */
+    color: #1976d2;
+    border: 2px solid #1976d2;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.dashboard-toggle-btn:hover {
+    background-color: #bbdefb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
