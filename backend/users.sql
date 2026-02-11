@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS login_system;
+CREATE DATABASE IF NOT EXISTS userlogin;
 
-USE login_system;
+USE userlogin;
 
 CREATE TABLE IF NOT EXISTS users (
     id VARCHAR(50) PRIMARY KEY,
